@@ -6,22 +6,29 @@ module.exports = NightDayTheming =
   modalPanel: null
   subscriptions: null
   activate: (state) ->
-    @nightDayThemingView = new NightDayThemingView(state.nightDayThemingViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @nightDayThemingView.getElement(), visible: false)
-
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
+    # @nightDayThemingView = new NightDayThemingView(state.nightDayThemingViewState)
+    # @modalPanel = atom.workspace.addModalPanel(item: @nightDayThemingView.getElement(), visible: false)
+    #
+    # # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'night-day-theming:toggle': => @toggle()
 
+
   deactivate: ->
-    @modalPanel.destroy()
-    @subscriptions.dispose()
-    @nightDayThemingView.destroy()
+    # @modalPanel.destroy()
+    # @subscriptions.dispose()
+    # @nightDayThemingView.destroy()
 
   serialize: ->
-    nightDayThemingViewState: @nightDayThemingView.serialize()
+    #nightDayThemingViewState: @nightDayThemingView.serialize()
+
+  darkUITheme: 'one-dark-ui'
+  lightUITheme: 'one-light-ui'
+  darkSyntaxTheme: 'solarized-dark-syntax'
+  lightSyntaxTheme: 'solarized-light-syntax'
+
 
   toggle: ->
     enabledThemeNames = atom.themes.getEnabledThemeNames()
@@ -42,9 +49,9 @@ module.exports = NightDayTheming =
     disabled = enabled.reduce reducer,emptyPromise
 
     disabled.then =>
-      @enableTheme('solarized-dark-syntax')
+      @enableTheme(@darkSyntaxTheme)
     .then =>
-      @enableTheme('one-dark-ui')
+      @enableTheme(@darkUITheme)
 
   enableLightTheme: ->
     enabled = atom.themes.getEnabledThemeNames()
@@ -54,9 +61,9 @@ module.exports = NightDayTheming =
         @disableTheme(t)
     disabled = enabled.reduce reducer,emptyPromise
     disabled.then =>
-      @enableTheme('solarized-light-syntax')
+      @enableTheme(@lightSyntaxTheme)
     .then =>
-      @enableTheme('one-light-ui')
+      @enableTheme(@lightUITheme)
 
 
   enableTheme: (themeName) ->
