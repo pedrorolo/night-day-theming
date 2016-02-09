@@ -1,0 +1,19 @@
+{
+  "name": "night-day-theming",
+  "main": "./lib/night-day-theming",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "night-day-theming:toggle"
+  },
+  "repository": "https://github.com/atom/night-day-theming",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "solarized-dark-syntax": ">1.0.0",
+    "solarized-light-syntax": ">1.0.0"
+  }
+}
