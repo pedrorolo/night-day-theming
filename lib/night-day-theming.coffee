@@ -2,6 +2,21 @@ NightDayThemingView = require './night-day-theming-view'
 {CompositeDisposable} = require 'atom'
 
 module.exports = NightDayTheming =
+  config:
+    darkUITheme:
+      type: 'string'
+      default: 'one-dark-ui'
+    lightUITheme:
+      type: 'string'
+      default: 'one-light-ui'
+    darkSyntaxTheme:
+      type: 'string'
+      default:  'solarized-dark-syntax'
+    lightSyntaxTheme:
+      type: 'string'
+      default:  'solarized-light-syntax'
+
+
   nightDayThemingView: null
   modalPanel: null
   subscriptions: null
@@ -16,6 +31,14 @@ module.exports = NightDayTheming =
     @subscriptions.add atom.commands.add 'atom-workspace', 'night-day-theming:toggle': => @toggle()
 
 
+  getDarkUITheme: -> atom.config.get('night-day-theming.darkUITheme')
+  getLightUITheme: -> atom.config.get('night-day-theming.lightUITheme')
+  getDarkSyntaxTheme: -> atom.config.get('night-day-theming.darkSyntaxTheme')
+  getLightSyntaxTheme: -> atom.config.get('night-day-theming.lightSyntaxTheme')
+
+
+
+
   deactivate: ->
     # @modalPanel.destroy()
     # @subscriptions.dispose()
@@ -24,10 +47,6 @@ module.exports = NightDayTheming =
   serialize: ->
     #nightDayThemingViewState: @nightDayThemingView.serialize()
 
-  darkUITheme: 'one-dark-ui'
-  lightUITheme: 'one-light-ui'
-  darkSyntaxTheme: 'solarized-dark-syntax'
-  lightSyntaxTheme: 'solarized-light-syntax'
 
 
   toggle: ->
@@ -49,9 +68,9 @@ module.exports = NightDayTheming =
     disabled = enabled.reduce reducer,emptyPromise
 
     disabled.then =>
-      @enableTheme(@darkSyntaxTheme)
+      @enableTheme(@getDarkSyntaxTheme())
     .then =>
-      @enableTheme(@darkUITheme)
+      @enableTheme(@getDarkUITheme())
 
   enableLightTheme: ->
     enabled = atom.themes.getEnabledThemeNames()
@@ -61,9 +80,9 @@ module.exports = NightDayTheming =
         @disableTheme(t)
     disabled = enabled.reduce reducer,emptyPromise
     disabled.then =>
-      @enableTheme(@lightSyntaxTheme)
+      @enableTheme(@getLightSyntaxTheme())
     .then =>
-      @enableTheme(@lightUITheme)
+      @enableTheme(@getLightUITheme())
 
 
   enableTheme: (themeName) ->

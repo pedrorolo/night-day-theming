@@ -1,5 +1,5 @@
 {
-  "name": "atom-night-day",
+  "name": "night-day-theming",
   "main": "./lib/night-day-theming",
   "version": "0.0.0",
   "description": "A short description of your package",
