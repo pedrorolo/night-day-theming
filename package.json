@@ -9,7 +9,7 @@
   "activationCommands": {
     "atom-workspace": "night-day-theming:toggle"
   },
-  "repository": "https://github.com/atom/night-day-theming",
+  "repository": "https://github.com/pedrorolo/night-day-theming",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
