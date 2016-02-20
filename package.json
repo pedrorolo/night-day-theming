@@ -1,9 +1,11 @@
 {
   "name": "night-day-theming",
   "main": "./lib/night-day-theming",
-  "version": "0.0.0",
-  "description": "A short description of your package",
-  "keywords": [],
+  "version": "0.0.1",
+  "description": "This package allows to configure two syntax/ui theme pairs and to toggle easily switch between these with a keyboard shortcut. In the future it might come to behave as f.lux / redshift",
+  "keywords": ["dark", "light", "themes", "switcher", "ui", "syntax", "night",
+    "day", "f.lux", "redshift"
+  ],
   "activationCommands": {
     "atom-workspace": "night-day-theming:toggle"
   },
@@ -12,10 +14,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-    "solarized-dark-syntax": ">1.0.0",
-    "solarized-light-syntax": ">1.0.0",
-    "one-dark-ui": ">1.0.0",
-    "one-light-ui": ">1.0.0"
-  }
+  "dependencies": {}
 }

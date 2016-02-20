@@ -1,20 +1,23 @@
-NightDayThemingView = require './night-day-theming-view'
 {CompositeDisposable} = require 'atom'
 
 module.exports = NightDayTheming =
   config:
     darkUITheme:
       type: 'string'
-      default: 'one-dark-ui'
+      default: 'atom-dark-ui'
+      enum: atom.themes.getLoadedThemeNames()
     lightUITheme:
       type: 'string'
-      default: 'one-light-ui'
+      default: 'atom-light-ui'
+      enum: atom.themes.getLoadedThemeNames()
     darkSyntaxTheme:
       type: 'string'
-      default:  'solarized-dark-syntax'
+      default:  'atom-dark-syntax'
+      enum: atom.themes.getLoadedThemeNames()
     lightSyntaxTheme:
       type: 'string'
-      default:  'solarized-light-syntax'
+      default:  'atom-light-syntax'
+      enum: atom.themes.getLoadedThemeNames()
 
 
   nightDayThemingView: null
@@ -52,7 +55,7 @@ module.exports = NightDayTheming =
   toggle: ->
     enabledThemeNames = atom.themes.getEnabledThemeNames()
 
-    if "solarized-dark-syntax" in enabledThemeNames
+    if @getDarkSyntaxTheme() in enabledThemeNames
       @enableLightTheme()
     else
       @enableDarkTheme()
