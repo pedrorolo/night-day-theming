@@ -5,19 +5,19 @@ module.exports = NightDayTheming =
     darkUITheme:
       type: 'string'
       default: 'atom-dark-ui'
-      enum: atom.themes.getLoadedThemeNames()
+      enum: atom.themes.getLoadedThemeNames().filter (e)->e.match(/.*ui/)
     lightUITheme:
       type: 'string'
       default: 'atom-light-ui'
-      enum: atom.themes.getLoadedThemeNames()
+      enum: atom.themes.getLoadedThemeNames().filter (e)->e.match(/.*ui/)
     darkSyntaxTheme:
       type: 'string'
       default:  'atom-dark-syntax'
-      enum: atom.themes.getLoadedThemeNames()
+      enum: atom.themes.getLoadedThemeNames().filter (e)->e.match(/.*syntax/)
     lightSyntaxTheme:
       type: 'string'
       default:  'atom-light-syntax'
-      enum: atom.themes.getLoadedThemeNames()
+      enum: atom.themes.getLoadedThemeNames().filter (e)->e.match(/.*syntax/)
 
 
   nightDayThemingView: null
