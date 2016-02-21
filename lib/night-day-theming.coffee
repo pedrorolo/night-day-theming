@@ -56,46 +56,18 @@ module.exports = NightDayTheming =
     enabledThemeNames = atom.themes.getEnabledThemeNames()
 
     if @getDarkSyntaxTheme() in enabledThemeNames
+      atom.config.set('core.themes', [@getDarkUITheme(),@getDarkSyntaxTheme()])
       @enableLightTheme()
     else
       @enableDarkTheme()
 
   enableDarkTheme: ->
-    enabled = atom.themes.getEnabledThemeNames()
-    emptyPromise =  new Promise (resolve)-> resolve()
-
-    reducer = (acc, t)=>
-      acc.then =>
-        @disableTheme(t)
-
-    disabled = enabled.reduce reducer,emptyPromise
-
-    disabled.then =>
-      @enableTheme(@getDarkSyntaxTheme())
-    .then =>
-      @enableTheme(@getDarkUITheme())
-
+    changeTheme =
+      => atom.config.set('core.themes',
+                         [@getDarkUITheme(),@getDarkSyntaxTheme()])
+    setTimeout(changeTheme,0)
   enableLightTheme: ->
-    enabled = atom.themes.getEnabledThemeNames()
-    emptyPromise =  new Promise (resolve)-> resolve()
-    reducer = (acc, t)=>
-      acc.then =>
-        @disableTheme(t)
-    disabled = enabled.reduce reducer,emptyPromise
-    disabled.then =>
-      @enableTheme(@getLightSyntaxTheme())
-    .then =>
-      @enableTheme(@getLightUITheme())
-
-
-  enableTheme: (themeName) ->
-    themes = atom.themes.getLoadedThemes().filter (t) ->
-      t.name == themeName
-    t = themes[0]
-    t.enable()
-
-  disableTheme: (themeName) ->
-    themes = atom.themes.getLoadedThemes().filter (t) ->
-      t.name == themeName
-    t = themes[0]
-    t.disable()
+    changeTheme =
+      => atom.config.set('core.themes',
+                         [@getLightUITheme(),@getLightSyntaxTheme()])
+    setTimeout(changeTheme,0)
