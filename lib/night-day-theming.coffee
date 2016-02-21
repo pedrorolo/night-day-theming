@@ -1,29 +1,30 @@
 {CompositeDisposable} = require 'atom'
 
+
 getThemeNamesEndingIn = (str) ->
   atom.themes.getLoadedThemeNames().filter (e)->e.match(///.*#{str}///)
 
-uiThemeNames = getThemeNamesEndingIn("ui")
-syntaxThemeNames = getThemeNamesEndingIn("syntax")
 
 module.exports = NightDayTheming =
+  uiThemeNames: getThemeNamesEndingIn("ui")
+  syntaxThemeNames: getThemeNamesEndingIn("syntax")
   config:
     darkUITheme:
       type: 'string'
       default: 'atom-dark-ui'
-      enum: uiThemeNames
+      enum: getThemeNamesEndingIn("ui")
     lightUITheme:
       type: 'string'
       default: 'atom-light-ui'
-      enum: uiThemeNames
+      enum: getThemeNamesEndingIn("ui")
     darkSyntaxTheme:
       type: 'string'
       default:  'atom-dark-syntax'
-      enum: syntaxThemeNames
+      enum: getThemeNamesEndingIn("syntax")
     lightSyntaxTheme:
       type: 'string'
       default:  'atom-light-syntax'
-      enum: syntaxThemeNames
+      enum: getThemeNamesEndingIn("syntax")
 
 
   nightDayThemingView: null
