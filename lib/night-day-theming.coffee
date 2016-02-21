@@ -1,7 +1,7 @@
 {CompositeDisposable} = require 'atom'
 
 getThemeNamesEndingIn = (str) ->
-  atom.themes.getLoadedThemeNames().filter (e)->e.match(/.*#{str}/)
+  atom.themes.getLoadedThemeNames().filter (e)->e.match(///.*#{str}///)
 
 uiThemeNames = getThemeNamesEndingIn("ui")
 syntaxThemeNames = getThemeNamesEndingIn("syntax")
